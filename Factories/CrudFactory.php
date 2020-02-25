@@ -18,7 +18,7 @@ class CrudFactory implements CrudInterface
         }
 
         $crudClass = $this->getClass($type);
-        if (! $crudClass) {
+        if (! class_exists($crudClass)) {
             throw new Exception("The class: {$crudClass} is not found!");
         }
 
