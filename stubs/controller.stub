@@ -2,7 +2,7 @@
 
 namespace DummyNamespace;
 
-class DummyClass extends Controller
+class DummyClass
 {
     /**
      * Display a listing of the resource.
