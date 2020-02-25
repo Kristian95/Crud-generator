@@ -6,13 +6,13 @@ include __DIR__ . '/../Libraries/Model.php';
 
 class CrudFactory implements CrudInterface
 {
-	private static $availableTypes = [
-        'Model' => Model::class,
+    private static $availableTypes = [
+        'Model'      => Model::class,
         'Controller' => Controller::class,
-	];
+    ];
 
-	public function create(string $type)
-	{
+    public function create(string $type)
+    {
         if (! $this->isTypeAvailable($type)) {
             throw new Exception("The type: {$type} is not available!");
         }
@@ -22,16 +22,16 @@ class CrudFactory implements CrudInterface
             throw new Exception("The class: {$crudClass} is not found!");
         }
 
-		return new $crudClass();
-	}
+        return new $crudClass();
+    }
 
-	private function isTypeAvailable(string $type)
-	{
-	    return array_key_exists($type, self::$availableTypes);
-	}
+    private function isTypeAvailable(string $type)
+    {
+        return array_key_exists($type, self::$availableTypes);
+    }
 
-	private function getClass(string $type)
-	{
-	    return self::$availableTypes[$type];
-	}
+    private function getClass(string $type)
+    {
+        return self::$availableTypes[$type];
+    }
 }

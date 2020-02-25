@@ -2,5 +2,5 @@
 
 interface CrudInterface
 {
-	public function create(string $type);
+    public function create(string $type);
 }
