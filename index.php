@@ -12,5 +12,5 @@ if (!function_exists('readline')) {
     }
 }
 
-$type = readline('Which type you want to create? ');
+$type = readline('Which type you want to create?');
 $crudFactory = (new CrudFactory())->create($type);

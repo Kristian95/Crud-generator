@@ -1,0 +1,12 @@
+<?php
+
+namespace DummyNamespace;
+
+class DummyClass extends Model
+{
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = '{{table}}';
+}
