@@ -40,7 +40,7 @@ class CrudFactory implements CrudInterface
      * @param string $type
      * @return bool
      */
-    private function isTypeAvailable(string $type)
+    private function isTypeAvailable(string $type): bool
     {
         return array_key_exists($type, self::$availableTypes);
     }
