@@ -3,6 +3,7 @@
 require_once(__DIR__ . '/../Interfaces/CrudFactoryInterface.php');
 require_once(__DIR__ . '/../Libraries/Controller.php');
 require_once(__DIR__ . '/../Libraries/Model.php');
+require_once(__DIR__ . '/../Exceptions/CrudFactoryException.php');
 
 /**
  * Class CrudFactory
@@ -25,12 +26,12 @@ class CrudFactory implements CrudFactoryInterface
     public function create(string $type)
     {
         if (! $this->isTypeAvailable($type)) {
-            throw new Exception("The type: {$type} is not available!");
+            throw new CrudFactoryException("The type: {$type} is not available!");
         }
 
         $crudClass = $this->getClass($type);
         if (! class_exists($crudClass)) {
-            throw new Exception("The class: {$crudClass} is not found!");
+            throw new CrudFactoryException("The class: {$crudClass} is not found!");
         }
 
         return new $crudClass();
