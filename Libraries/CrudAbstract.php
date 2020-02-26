@@ -2,15 +2,26 @@
 
 abstract class CrudAbstract
 {
-    abstract public function getStub();
     abstract public function process();
+    abstract protected function getStub();
 
+    /**
+     * Create dir if not exists
+     */
+    protected function createDir(): void
+    {
+        $className = get_class($this);
+
+        if (!is_dir($className)) {
+            mkdir($className);
+        }
+    }
     /**
      * @param $stub
      * @param $namespace
      * @return $this
      */
-    public function replaceNamespace(&$stub, $namespace)
+    protected function replaceNamespace(&$stub, $namespace)
     {
         $stub = str_replace('{{modelNamespace}}', $namespace, $stub);
 
@@ -22,7 +33,7 @@ abstract class CrudAbstract
      * @param $class
      * @return $this
      */
-    public function replaceClass(&$stub, $class)
+    protected function replaceClass(&$stub, $class)
     {
         $stub = str_replace('{{DummyClass}}', $class, $stub);
 

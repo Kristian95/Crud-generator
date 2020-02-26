@@ -11,18 +11,11 @@ class Controller extends CrudAbstract
     private $viewName = 'viewName';
 
     /**
-     * @return string
-     */
-    public function getStub(): string
-    {
-        return __DIR__ . '/../stubs/controller.stub';
-    }
-
-    /**
      * @return $this
      */
     public function process(): self
     {
+        $this->createDir();
         $stub = $this->getStub();
         $class = $this->getClass();
         $viewPath = $this->getViewPath();
@@ -35,6 +28,14 @@ class Controller extends CrudAbstract
             ->replaceCrudName($stub, $crudName)
             ->replaceViewName($stub, $viewName)
             ->replaceClass($stub, $class);
+    }
+
+    /**
+     * @return string
+     */
+    protected function getStub(): string
+    {
+        return __DIR__ . '/../stubs/controller.stub';
     }
 
     /**

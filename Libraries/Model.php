@@ -9,18 +9,11 @@ class Model extends CrudAbstract
     private $namespace = 'namespaceModel';
 
     /**
-     * @return string
-     */
-    public function getStub(): string
-    {
-        return __DIR__ . '/../stubs/model.stub';
-    }
-
-    /**
      * @return Model
      */
     public function process(): self
     {
+        $this->createDir();
         $stub = $this->getStub();
         $table = $this->getTable();
         $class = $this->getClass();
@@ -29,6 +22,14 @@ class Model extends CrudAbstract
         return $this->replaceTable($stub, $table)
             ->replaceNamespace($stub, $namespace)
             ->replaceClass($stub, $class);
+    }
+
+    /**
+     * @return string
+     */
+    protected function getStub(): string
+    {
+        return __DIR__ . '/../stubs/model.stub';
     }
 
     /**
