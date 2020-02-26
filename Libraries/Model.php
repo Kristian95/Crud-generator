@@ -9,19 +9,28 @@ class Model extends CrudAbstract
     private $table = 'table_name';
 
     /**
-     * @return Model
+     * @return string
      */
     public function process()
     {
         $this->createDir();
         $stub = $this->getStub();
-        $table = $this->getTable();
-        $class = $this->getClass();
-        $namespace = $this->getNamespace();
+        $stub = $this->createFileContent($stub);
 
-        return $this->replaceTable($stub, $table)
-            ->replaceNamespace($stub, $namespace)
-            ->replaceClass($stub, $class);
+        return $stub;
+    }
+
+    /**
+     * @param $stub
+     * @return string
+     */
+    protected function createFileContent($stub)
+    {
+        $stub = $this->replaceTable($stub, $this->getTable());
+        $stub = $this->replaceNamespace($stub, $this->getNamespace());
+        $stub = $this->replaceClass($stub, $this->getClass());
+
+        return $stub;
     }
 
     /**
@@ -29,7 +38,7 @@ class Model extends CrudAbstract
      */
     protected function getStub(): string
     {
-        return __DIR__ . '/../stubs/model.stub';
+        return file_get_contents(__DIR__ . '/../stubs/model.stub');
     }
 
     /**
@@ -37,13 +46,11 @@ class Model extends CrudAbstract
      *
      * @param string $stub
      * @param string $table
-     * @return $this
+     * @return string
      */
-    protected function replaceTable(&$stub, $table): self
+    protected function replaceTable(&$stub, $table): string
     {
-        $stub = str_replace('{{table}}', $table, $stub);
-
-        return $this;
+        return str_replace('{{table}}', $table, $stub);
     }
 
     /**

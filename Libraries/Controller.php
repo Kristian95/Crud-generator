@@ -11,23 +11,31 @@ class Controller extends CrudAbstract
     private $viewName = 'viewName';
 
     /**
-     * @return $this
+     * @return string
      */
-    public function process(): self
+    public function process()
     {
         $this->createDir();
         $stub = $this->getStub();
-        $class = $this->getClass();
-        $viewPath = $this->getViewPath();
-        $crudName = $this->getCrudName();
-        $viewName = $this->getViewName();
-        $namespace = $this->getNamespace();
+        $stub = $this->createFileContent($stub);
 
-        return $this->replaceNamespace($stub, $namespace)
-            ->replaceViewPath($stub, $viewPath)
-            ->replaceCrudName($stub, $crudName)
-            ->replaceViewName($stub, $viewName)
-            ->replaceClass($stub, $class);
+        return $stub;
+    }
+
+
+    /**
+     * @param $stub
+     * @return string
+     */
+    protected function createFileContent($stub)
+    {
+        $stub = $this->replaceNamespace($stub, $this->getNamespace());
+        $stub = $this->replaceViewPath($stub, $this->getViewPath());
+        $stub = $this->replaceCrudName($stub, $this->getCrudName());
+        $stub = $this->replaceViewName($stub, $this->getViewName());
+        $stub = $this->replaceClass($stub, $this->getClass());
+
+        return $stub;
     }
 
     /**
@@ -35,43 +43,37 @@ class Controller extends CrudAbstract
      */
     protected function getStub(): string
     {
-        return __DIR__ . '/../stubs/controller.stub';
+        return file_get_contents(__DIR__ . '/../stubs/controller.stub');
     }
 
     /**
      * @param $stub
      * @param $viewPath
-     * @return $this
+     * @return string
      */
-    protected function replaceViewPath(&$stub, $viewPath): self
+    protected function replaceViewPath(&$stub, $viewPath): string
     {
-        $stub = str_replace('{{viewPath}}', $viewPath, $stub);
-
-        return $this;
+        return str_replace('{{viewPath}}', $viewPath, $stub);
     }
 
     /**
      * @param $stub
      * @param $namespace
-     * @return $this
+     * @return string
      */
-    protected function replaceCrudName(&$stub, $namespace): self
+    protected function replaceCrudName(&$stub, $namespace): string
     {
-        $stub = str_replace('{{crudName}}', $namespace, $stub);
-
-        return $this;
+        return str_replace('{{crudName}}', $namespace, $stub);
     }
 
     /**
      * @param $stub
      * @param $viewName
-     * @return $this
+     * @return string
      */
-    protected function replaceViewName(&$stub, $viewName): self
+    protected function replaceViewName(&$stub, $viewName): string
     {
-        $stub = str_replace('{{viewName}}', $viewName, $stub);
-
-        return $this;
+        return str_replace('{{viewName}}', $viewName, $stub);
     }
 
     /**

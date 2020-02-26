@@ -4,6 +4,7 @@ abstract class CrudAbstract
 {
     abstract public function process();
     abstract protected function getStub();
+    abstract protected function createFileContent($stub);
 
     /**
      * Create dir if not exists
@@ -19,25 +20,21 @@ abstract class CrudAbstract
     /**
      * @param $stub
      * @param $namespace
-     * @return $this
+     * @return string
      */
-    protected function replaceNamespace(&$stub, $namespace)
+    protected function replaceNamespace(&$stub, $namespace): string
     {
-        $stub = str_replace('{{modelNamespace}}', $namespace, $stub);
-
-        return $this;
+        return str_replace('{{DummyNamespace}}', $namespace, $stub);
     }
 
     /**
      * @param $stub
      * @param $class
-     * @return $this
+     * @return string
      */
-    protected function replaceClass(&$stub, $class)
+    protected function replaceClass(&$stub, $class): string
     {
-        $stub = str_replace('{{DummyClass}}', $class, $stub);
-
-        return $this;
+        return str_replace('{{DummyClass}}', $class, $stub);
     }
 
     /**
