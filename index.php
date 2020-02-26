@@ -1,9 +1,10 @@
 <?php
 
-include 'Factories/CrudFactory.php';
+require_once('Factories/CrudFactory.php');
 
-if (!function_exists('readline')) {
-    function readline($question) {
+if (! function_exists('readline')) {
+    function readline($question)
+    {
         $fh = fopen('php://stdin', 'r');
         $userInput = trim(fgets($fh));
         fclose($fh);

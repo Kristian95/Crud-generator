@@ -1,8 +1,8 @@
 <?php
 
-include __DIR__ . '/../Interfaces/CrudInterface.php';
-include __DIR__ . '/../Libraries/Controller.php';
-include __DIR__ . '/../Libraries/Model.php';
+require_once(__DIR__ . '/../Interfaces/CrudInterface.php');
+require_once(__DIR__ . '/../Libraries/Controller.php');
+require_once(__DIR__ . '/../Libraries/Model.php');
 
 /**
  * Class CrudFactory
