@@ -1,13 +1,13 @@
 <?php
 
-require_once(__DIR__ . '/../Interfaces/CrudInterface.php');
+require_once(__DIR__ . '/../Interfaces/CrudFactoryInterface.php');
 require_once(__DIR__ . '/../Libraries/Controller.php');
 require_once(__DIR__ . '/../Libraries/Model.php');
 
 /**
  * Class CrudFactory
  */
-class CrudFactory implements CrudInterface
+class CrudFactory implements CrudFactoryInterface
 {
     /**
      * @var array
