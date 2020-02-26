@@ -5,13 +5,13 @@ require_once(__DIR__ . '/CrudAbstract.php');
 class Model extends CrudAbstract
 {
     private $table = 'table_name';
-    private $class = 'classModel';
-    private $namespace = 'namespaceModel';
+    protected $class = 'classModel';
+    protected $namespace = 'namespaceModel';
 
     /**
      * @return Model
      */
-    public function process(): self
+    public function process()
     {
         $this->createDir();
         $stub = $this->getStub();
@@ -52,21 +52,5 @@ class Model extends CrudAbstract
     private function getTable(): string
     {
         return $this->table;
-    }
-
-    /**
-     * @return string
-     */
-    private function getClass(): string
-    {
-        return $this->class;
-    }
-
-    /**
-     * @return string
-     */
-    private function getNamespace(): string
-    {
-        return $this->namespace;
     }
 }

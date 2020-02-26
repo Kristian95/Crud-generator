@@ -4,8 +4,8 @@ require_once(__DIR__ . '/CrudAbstract.php');
 
 class Controller extends CrudAbstract
 {
-    private $class = 'classModel';
-    private $namespace = 'namespaceModel';
+    protected $class = 'classModel';
+    protected $namespace = 'namespaceModel';
     private $viewPath = 'viewPath';
     private $crudName = 'crudName';
     private $viewName = 'viewName';
@@ -72,22 +72,6 @@ class Controller extends CrudAbstract
         $stub = str_replace('{{viewName}}', $viewName, $stub);
 
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    private function getClass(): string
-    {
-        return $this->class;
-    }
-
-    /**
-     * @return string
-     */
-    private function getNamespace(): string
-    {
-        return $this->namespace;
     }
 
     /**

@@ -39,4 +39,20 @@ abstract class CrudAbstract
 
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    protected function getClass(): string
+    {
+        return $this->class;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getNamespace(): string
+    {
+        return $this->namespace;
+    }
 }
