@@ -2,9 +2,9 @@
 
 abstract class CrudAbstract
 {
-    abstract public function process();
+    abstract public function process(): void;
     abstract protected function getStub();
-    abstract protected function createFileContent($stub);
+    abstract protected function createFile($stub): void;
 
     /**
      * Create dir if not exists

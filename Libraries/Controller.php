@@ -9,25 +9,24 @@ class Controller extends CrudAbstract
     private $viewPath = 'viewPath';
     private $crudName = 'crudName';
     private $viewName = 'viewName';
+    private $fileName = 'Controller.php';
 
     /**
-     * @return string
+     * @return void
      */
-    public function process()
+    public function process(): void
     {
         $this->createDir();
         $stub = $this->getStub();
-        $stub = $this->createFileContent($stub);
-
-        return $stub;
+        $this->createFile($stub);
     }
 
 
     /**
      * @param $stub
-     * @return string
+     * @return void
      */
-    protected function createFileContent($stub)
+    protected function createFile($stub): void
     {
         $stub = $this->replaceNamespace($stub, $this->getNamespace());
         $stub = $this->replaceViewPath($stub, $this->getViewPath());
@@ -35,7 +34,8 @@ class Controller extends CrudAbstract
         $stub = $this->replaceViewName($stub, $this->getViewName());
         $stub = $this->replaceClass($stub, $this->getClass());
 
-        return $stub;
+        $file = fopen($this->fileName, 'w') or die('Cannot open file:  '. $this->fileName);
+        file_put_contents($this->fileName, $stub);
     }
 
     /**

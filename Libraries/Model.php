@@ -7,30 +7,30 @@ class Model extends CrudAbstract
     protected $class = 'classModel';
     protected $namespace = 'namespaceModel';
     private $table = 'table_name';
+    private $fileName = 'Model.php';
 
     /**
-     * @return string
+     * @return void
      */
-    public function process()
+    public function process(): void
     {
         $this->createDir();
         $stub = $this->getStub();
-        $stub = $this->createFileContent($stub);
-
-        return $stub;
+        $this->createFile($stub);
     }
 
     /**
      * @param $stub
-     * @return string
+     * @return void
      */
-    protected function createFileContent($stub)
+    protected function createFile($stub): void
     {
         $stub = $this->replaceTable($stub, $this->getTable());
         $stub = $this->replaceNamespace($stub, $this->getNamespace());
         $stub = $this->replaceClass($stub, $this->getClass());
 
-        return $stub;
+        fopen($this->fileName, 'w') or die('Cannot open file:  '. $this->fileName);
+        file_put_contents($this->fileName, $stub);
     }
 
     /**

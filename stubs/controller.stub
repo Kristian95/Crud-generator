@@ -1,14 +1,9 @@
 <?php
 
-namespace {{DummyNamespace}}
+namespace {{DummyNamespace}} ;
 
 class {{DummyClass}}
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\View\View
-     */
     public function index()
     {
         return view('{{viewPath}}{{viewName}}.index', compact('{{crudName}}'));
