@@ -4,9 +4,9 @@ require_once(__DIR__ . '/CrudAbstract.php');
 
 class Model extends CrudAbstract
 {
-    private $table = 'table_name';
     protected $class = 'classModel';
     protected $namespace = 'namespaceModel';
+    private $table = 'table_name';
 
     /**
      * @return Model

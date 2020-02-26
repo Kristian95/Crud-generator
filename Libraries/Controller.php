@@ -4,8 +4,8 @@ require_once(__DIR__ . '/CrudAbstract.php');
 
 class Controller extends CrudAbstract
 {
-    protected $class = 'classModel';
-    protected $namespace = 'namespaceModel';
+    protected $class = 'classController';
+    protected $namespace = 'namespaceController';
     private $viewPath = 'viewPath';
     private $crudName = 'crudName';
     private $viewName = 'viewName';
