@@ -7,7 +7,7 @@ class Model extends CrudAbstract
     protected $class = 'classModel';
     protected $namespace = 'namespaceModel';
     private $table = 'table_name';
-    private $fileName = 'Model.php';
+    private $fileName = 'Model/Model.php';
 
     /**
      * @return void

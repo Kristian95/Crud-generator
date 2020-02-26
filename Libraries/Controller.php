@@ -9,7 +9,7 @@ class Controller extends CrudAbstract
     private $viewPath = 'viewPath';
     private $crudName = 'crudName';
     private $viewName = 'viewName';
-    private $fileName = 'Controller.php';
+    private $fileName = 'Controller/Controller.php';
 
     /**
      * @return void
